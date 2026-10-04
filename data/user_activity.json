@@ -1,0 +1,61 @@
+{
+    "usr_1788417248_f55d5f": {
+        "saved_properties": [],
+        "bookings": [
+            {
+                "id": "bk_1788417248_689e",
+                "prop_id": 2,
+                "title": "Site Visit \u2014 Godrej Woods",
+                "type": "site_visit",
+                "location": "Sector 43, Noida",
+                "date": "2026-09-10",
+                "status": "Scheduled",
+                "specialist": "Assigned Homeosphere Advisor",
+                "created_at": "2026-09-03 08:34:08"
+            }
+        ]
+    },
+    "usr_1788417384_9efefc": {
+        "saved_properties": [],
+        "bookings": [
+            {
+                "id": "bk_1788417384_54f6",
+                "prop_id": "p2",
+                "title": "Site Visit \u2014 Spacious 2BHK in Tech Corridor",
+                "type": "site_visit",
+                "location": "Whitefield, Bengaluru",
+                "date": "2026-09-10",
+                "status": "Scheduled",
+                "specialist": "Assigned Homeosphere Advisor",
+                "created_at": "2026-09-03 08:36:24"
+            }
+        ]
+    },
+    "usr_1788416611_977747": {
+        "saved_properties": [
+            "p1",
+            "p4",
+            "p5",
+            "p6"
+        ],
+        "bookings": [
+            {
+                "id": "bk_1788417883_73b6",
+                "prop_id": "p4",
+                "title": "Rental Inquiry \u2014 Modern 1BHK Studio for Young Pros",
+                "type": "rental_inquiry",
+                "location": "Sector 62, Noida, Noida",
+                "date": "2026-09-03",
+                "status": "Scheduled",
+                "specialist": "Assigned Homeosphere Advisor",
+                "created_at": "2026-09-03 08:44:43"
+            }
+        ]
+    },
+    "usr_1788418733_b44e4c": {
+        "saved_properties": [
+            "p4"
+        ],
+        "bookings": []
+    }
+}

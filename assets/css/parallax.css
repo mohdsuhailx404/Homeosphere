@@ -1,0 +1,1074 @@
+/* ===================================================================
+   Homeosphere 3.0 — Parallax Architectural Zoom & Spatial Journey
+   Tuned for Entrance, Living Room, Kitchen, Wardrobe & Home Office
+   =================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=Figtree:wght@400;500;600;700&display=swap');
+
+:root {
+  /* High-Res Parallax Scene Imagery */
+  --villa: url('/assets/img/parallax/villa.jpg');
+  --foyer: url('/assets/img/parallax/foyer.jpg');
+  --living: url('/assets/img/parallax/living.jpg');
+  --kitchen: url('/assets/img/parallax/kitchen.jpg');
+  --wardrobe: url('/assets/img/parallax/wardrobe.jpg');
+  --office: url('/assets/img/parallax/office.jpg');
+  --wood: url('/assets/img/parallax/wood.jpg');
+  --terrace: url('/assets/img/parallax/terrace.jpg');
+
+  /* Property & Picture Frame Assets */
+  --p0: url('/assets/img/parallax/p0.jpg');
+  --p1: url('/assets/img/parallax/p1.jpg');
+  --p2: url('/assets/img/parallax/p2.jpg');
+  --p3: url('/assets/img/parallax/p3.jpg');
+  --p4: url('/assets/img/parallax/p4.jpg');
+  --p5: url('/assets/img/parallax/p5.jpg');
+  --p6: url('/assets/img/parallax/p6.jpg');
+
+  /* Alpha-Transparent Overlays */
+  --f0: url('/assets/img/parallax/f0.webp');
+  --f1: url('/assets/img/parallax/f1.webp');
+  --f2: url('/assets/img/parallax/f2.webp');
+  --f3: url('/assets/img/parallax/f3.webp');
+  --hanger: url('/assets/img/parallax/hanger.webp');
+  --lap: url('/assets/img/parallax/lap.webp');
+
+  /* Precision Architectural Spatial Offsets */
+  --paper: #EEF0EC;
+  --ink: #0B1F3A;
+  --muted: #55656d;
+  --card: #FBFCFA;
+  --brass: #C9971A;
+  --accent: #0B1F3A;
+  --line: #d3d8d0;
+}
+
+/* Door and laptop perspective ratios */
+.dl {
+  background-size: 3662.428% 505.263%;
+  background-position: 48.580% 67.996%;
+}
+.dr {
+  background-size: 3662.428% 505.263%;
+  background-position: 51.387% 67.996%;
+}
+.hg { aspect-ratio: 1.6819; }
+.lap { --la: 1.4747; }
+
+/* Navigation quick-dots indicator */
+.parallax-dots {
+  position: fixed;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: opacity 0.3s ease;
+}
+.parallax-dots.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.parallax-dots b {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(11, 31, 58, 0.45), 0 2px 8px rgba(0,0,0,0.3);
+  opacity: .6;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, background 0.3s ease;
+  position: relative;
+}
+.parallax-dots b::after {
+  content: attr(data-title);
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(11, 31, 58, 0.94);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: 'Figtree', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+.parallax-dots b:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(-4px);
+}
+.parallax-dots b.on {
+  opacity: 1;
+  background: var(--gold-500);
+  transform: scale(1.45);
+  box-shadow: 0 0 0 2px #ffffff, 0 4px 12px rgba(201, 151, 26, 0.5);
+}
+
+/* Master Scroll Track & Sticky Viewport Stage */
+#track {
+  height: 1200vh;
+  position: relative;
+  width: 100%;
+}
+#stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  z-index: 10;
+  background: #000;
+}
+#stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 45%, transparent 58%, rgba(0,0,0,.35));
+}
+#stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  opacity: .07;
+  mix-blend-mode: multiply;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Scenes */
+.scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  will-change: transform, opacity;
+}
+#s0 { background: #e9c9b0; }
+#s1 { background: #8f9a8c; }
+#s2 { background: #a7a88f; }
+#s3 { background: var(--wood) center/cover; }
+#s4 { background: #8e9a86; }
+#s5 { background: #dce4e8; }
+
+.plate {
+  --ar: 2.3571;
+  --pw: max(100vw, calc(100svh * var(--ar)));
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--pw);
+  aspect-ratio: var(--ar);
+  transform: translate(-50%,-50%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  will-change: transform;
+}
+.plate.w {
+  --ar: 2.3571;
+  --pw: max(100vw, calc(100svh * var(--ar)));
+}
+.plate.wd {
+  --ar: 1.792;
+  --pw: max(100vw, calc(100svh * var(--ar)));
+}
+.plate.t {
+  --ar: 2.3594;
+  --pw: max(100vw, calc(100svh * var(--ar)));
+}
+
+/* Eyebrows & Glass Containers */
+.eb {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--gold-600);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+.scene .glass,
+.copy.glass {
+  position: absolute;
+  z-index: 4;
+  background: rgba(251, 252, 250, 0.88);
+  backdrop-filter: blur(16px) saturate(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  padding: 26px 28px;
+  box-shadow: 0 20px 50px rgba(11, 31, 58, 0.24);
+}
+.copy {
+  left: 4vw;
+  top: 14svh;
+  width: min(29vw, 410px);
+}
+.copy.kc {
+  width: min(33vw, 450px);
+}
+.copy h2 {
+  font-family: 'Bricolage Grotesque', var(--font-sans);
+  font-size: clamp(24px, 2.7vw, 38px);
+  line-height: 1.1;
+  color: var(--navy-900);
+  margin: 6px 0 14px;
+  letter-spacing: -0.02em;
+}
+.copy p {
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+.copy .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--navy-900);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.copy .btn:hover {
+  background: var(--gold-600);
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+/* ===================================================================
+   SCENE 0: ENTRANCE
+   =================================================================== */
+.doorbox {
+  position: absolute;
+  left: 47.254%;
+  top: 54.539%;
+  width: 5.461%;
+  height: 19.792%;
+  perspective: calc(var(--pw) * .2);
+}
+.peek {
+  position: absolute;
+  inset: 0;
+  background: var(--foyer) center/cover;
+  box-shadow: inset 0 0 28px rgba(0, 0, 0, 0.65);
+}
+.leaf {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background-image: var(--villa);
+  background-repeat: no-repeat;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+.dl { left: 0; transform-origin: left center; }
+.dr { right: 0; transform-origin: right center; }
+
+.ext-title {
+  position: absolute;
+  z-index: 3;
+  top: clamp(58px, 8.5svh, 82px);
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #0B1F3A;
+  padding: 0 1rem;
+  pointer-events: none;
+}
+.ext-title h1 {
+  font-family: 'Bricolage Grotesque', var(--font-sans);
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #0B1F3A;
+  margin: 0 0 6px 0;
+}
+.ext-title p {
+  margin: 0;
+  font-weight: 500;
+  font-size: clamp(14px, 1.3vw, 18px);
+  color: var(--navy-700);
+}
+.hint {
+  position: absolute;
+  z-index: 3;
+  bottom: 3.5svh;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 10px 22px;
+  border-radius: 99px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #0B1F3A;
+  white-space: nowrap;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: bounceHint 2.4s infinite ease-in-out;
+}
+@keyframes bounceHint {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-6px); }
+}
+
+.hero-in {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  color: #fff;
+  background: linear-gradient(90deg, rgba(7, 18, 36, 0.9) 0%, rgba(7, 18, 36, 0.6) 48%, rgba(7, 18, 36, 0.15) 85%), var(--foyer) center/cover;
+}
+.hcopy {
+  position: absolute;
+  left: 6vw;
+  top: 50%;
+  transform: translateY(-46%);
+  width: min(92vw, 760px);
+}
+.hcopy .eb {
+  color: var(--gold-300);
+  background: rgba(201, 151, 26, 0.2);
+  padding: 4px 14px;
+  border-radius: 99px;
+  border: 1px solid rgba(201, 151, 26, 0.4);
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+.hcopy h1 {
+  font-family: 'Bricolage Grotesque', var(--font-sans);
+  font-size: clamp(26px, 3.2vw, 46px);
+  line-height: 1.15;
+  margin: 8px 0 12px;
+  color: #fff;
+  letter-spacing: -0.025em;
+}
+.hcopy h1 .h-line {
+  display: inline-block;
+  white-space: nowrap;
+}
+.hcopy p {
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 58ch;
+  margin-bottom: 16px;
+  line-height: 1.5;
+  font-size: clamp(13px, 1.05vw, 16px);
+}
+.hero-search-box {
+  background: var(--card);
+  color: var(--navy-900);
+  border-radius: 18px;
+  padding: 13px 16px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255,255,255,0.4);
+}
+.hero-search-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.hero-search-tabs b {
+  padding: 6px 16px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  user-select: none;
+}
+.hero-search-tabs b.on,
+.hero-search-tabs b.active {
+  background: var(--navy-900);
+  color: #fff;
+}
+.hero-search-row {
+  display: flex;
+  gap: 10px;
+  position: relative;
+}
+.hero-search-row input {
+  flex: 1;
+  min-width: 0;
+  border: 1.5px solid var(--line);
+  background: transparent;
+  color: var(--navy-900);
+  border-radius: 99px;
+  padding: 12px 20px;
+  font: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.hero-search-row input:focus {
+  border-color: var(--gold-500);
+  box-shadow: 0 0 0 3px rgba(201, 151, 26, 0.2);
+}
+.hero-search-row .btn {
+  padding: 12px 24px;
+  border-radius: 99px;
+  background: var(--gold-500);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s, transform 0.2s;
+}
+.hero-search-row .btn:hover {
+  background: var(--gold-600);
+  transform: translateY(-1px);
+}
+.hero-stats-row {
+  display: flex;
+  gap: 32px;
+  margin-top: 24px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  flex-wrap: wrap;
+}
+.hero-stats-row div b {
+  display: block;
+  font: 700 24px 'Bricolage Grotesque', var(--font-sans);
+  color: #fff;
+  line-height: 1.1;
+}
+
+/* ===================================================================
+   SCENE 1: LIVING ROOM — PROPERTIES STRIP
+   =================================================================== */
+#s1 { --fh: 34svh; }
+.strip {
+  position: absolute;
+  z-index: 2;
+  top: 9svh;
+  left: 0;
+  display: flex;
+  gap: 3.5vw;
+  align-items: flex-start;
+  will-change: transform;
+}
+.fr {
+  flex: none;
+  position: relative;
+  aspect-ratio: var(--a);
+  filter: drop-shadow(0 16px 14px rgba(0, 0, 0, 0.42));
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+}
+.fr:hover {
+  transform: translateY(-8px) scale(1.02);
+  filter: drop-shadow(0 24px 22px rgba(0, 0, 0, 0.55));
+}
+.fr .ph {
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.fr i {
+  position: absolute;
+  inset: 0;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+.fr-caption {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 12px;
+  background: rgba(7, 18, 36, 0.9);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  line-height: 1.35;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+  opacity: 0.92;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+.fr:hover .fr-caption {
+  opacity: 1;
+  background: rgba(7, 18, 36, 0.98);
+}
+.fr-caption b {
+  display: block;
+  color: var(--gold-300);
+  font-size: 13px;
+  font-family: 'Bricolage Grotesque', var(--font-sans);
+}
+.fr-caption span {
+  color: rgba(255,255,255,0.85);
+  font-size: 11px;
+}
+
+/* ===================================================================
+   SCENE 2: KITCHEN — HOME SERVICES CABINETS
+   =================================================================== */
+.cab {
+  position: absolute;
+  perspective: 2400px;
+  transform-style: preserve-3d;
+  container-type: inline-size;
+}
+.inside {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--wood) center/cover no-repeat;
+  box-shadow: inset 0 0 26px rgba(0, 0, 0, 0.75), inset 0 0 3px rgba(0, 0, 0, 0.9);
+  border-radius: 4px;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 1;
+}
+/* Upper cabinets: centered in cabinet vertically */
+.cab-lg .inside {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 6px;
+}
+/* Lower cabinets: aligned from top end */
+.cab-sm .inside {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 8px 6px 4px;
+}
+.cab-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 88%;
+  background: rgba(11, 28, 52, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 9px;
+  padding: 6px 6px 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  box-sizing: border-box;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
+}
+.cab-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(201, 151, 26, 0.65);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.65), 0 0 16px rgba(201, 151, 26, 0.25);
+}
+.cab-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9.5;
+  border-radius: 5px;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  flex-shrink: 0;
+}
+.cab-sm .cab-thumb {
+  aspect-ratio: 16 / 8.5;
+}
+.cab-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 5px;
+}
+.cab-title {
+  font-family: 'Bricolage Grotesque', var(--font-sans);
+  font-size: clamp(10.5px, 6.4cqw, 13.5px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+.cab-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.cab-price {
+  font-size: clamp(8.5px, 5.0cqw, 11px);
+  font-weight: 700;
+  color: var(--gold-400);
+  white-space: nowrap;
+}
+.cab-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(8px, 4.4cqw, 10.5px);
+  font-weight: 700;
+  color: #0b1f3a;
+  background: var(--gold-400);
+  padding: 2.5px 7px;
+  border-radius: 99px;
+  text-decoration: none;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+.cab-btn:hover {
+  background: #ffffff;
+  color: #0b1f3a;
+  transform: translateY(-1px);
+}
+/* Compact fine-tuning for smaller lower cabinets */
+.cab-sm .cab-body {
+  margin-top: 3px;
+}
+.cab-sm .cab-title {
+  font-size: clamp(9px, 5.8cqw, 11.5px);
+  margin-bottom: 2px;
+}
+.cab-sm .cab-action {
+  gap: 4px;
+}
+.cab-sm .cab-price {
+  font-size: clamp(8px, 4.6cqw, 10px);
+}
+.cab-sm .cab-btn {
+  font-size: clamp(7.5px, 4.0cqw, 9.5px);
+  padding: 2px 6px;
+}
+.kd {
+  position: absolute;
+  inset: 0;
+  background-image: var(--kitchen);
+  background-repeat: no-repeat;
+  transform-origin: left center;
+  backface-visibility: visible !important;
+  -webkit-backface-visibility: visible !important;
+  will-change: transform;
+  z-index: 5;
+  pointer-events: none;
+}
+.kd.r {
+  transform-origin: right center;
+}
+
+/* ===================================================================
+   SCENE 3: WARDROBE — VERIFIED PROFESSIONALS
+   =================================================================== */
+.hang {
+  position: absolute;
+  width: 9.6%;
+  transform-origin: 50% 4%;
+  container-type: inline-size;
+  will-change: transform, opacity;
+}
+.hg {
+  background: var(--hanger) 0 0/100% 100% no-repeat;
+  filter: drop-shadow(0 .8cqw 1.2cqw rgba(0,0,0,.4));
+}
+.tag {
+  width: 90%;
+  margin: -1.8cqw auto 0;
+  background: var(--card);
+  border-radius: 2.2cqw;
+  padding: 5cqw 4cqw;
+  box-shadow: 0 2cqw 4cqw rgba(0,0,0,.35);
+  border: 1px solid rgba(0,0,0,0.06);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.tag .pro-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.5cqw;
+  margin-bottom: 1.5cqw;
+  width: 100%;
+}
+.tag .pro-avatar {
+  width: 15cqw;
+  height: 15cqw;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold-400);
+  flex-shrink: 0;
+  margin-bottom: 0.5cqw;
+}
+.tag b {
+  display: block;
+  font: 700 7.6cqw 'Bricolage Grotesque', var(--font-sans);
+  line-height: 1.15;
+  color: var(--navy-900);
+  text-align: center;
+}
+.tag .pro-role {
+  font-size: 5.4cqw;
+  font-weight: 600;
+  color: var(--gold-600);
+  display: block;
+  text-align: center;
+  margin-top: 0.5cqw;
+}
+.tag small {
+  display: block;
+  font-size: 4.6cqw;
+  color: var(--muted);
+  margin: 1.5cqw 0 3cqw;
+  text-align: center;
+  line-height: 1.3;
+}
+.tag a.hire-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5cqw;
+  font-weight: 700;
+  color: #fff;
+  background: var(--navy-900);
+  padding: 2.5cqw 6cqw;
+  border-radius: 99px;
+  text-decoration: none;
+  align-self: center;
+  margin: 0 auto;
+  transition: background 0.2s, transform 0.2s;
+}
+.tag a.hire-btn:hover {
+  background: var(--gold-600);
+  transform: translateY(-1px);
+}
+
+/* ===================================================================
+   SCENE 4: HOME OFFICE — PROPERTY MANAGEMENT LAPTOP DASHBOARD
+   =================================================================== */
+.lap {
+  position: absolute;
+  left: 61%;
+  top: 52%;
+  width: 19.5%;
+  aspect-ratio: var(--la);
+  filter: drop-shadow(0 2.2cqw 2cqw rgba(0,0,0,.45));
+  container-type: inline-size;
+}
+.lap > .lp {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--lap) 0 0/100% 100% no-repeat;
+  pointer-events: none;
+  z-index: 3;
+}
+.scr {
+  position: absolute;
+  left: 35.3%;
+  top: 2.0%;
+  width: 57.0%;
+  height: 71.0%;
+  overflow: hidden;
+  background: #0b1528;
+  color: #fff;
+  container-type: inline-size;
+  padding: 3.8% 3.5% 6% 3.8%;
+  transform-origin: bottom left;
+  transform: skewX(-9.26deg);
+  border-radius: 1cqw;
+  z-index: 1;
+  box-sizing: border-box;
+}
+.dh {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2cqw;
+  padding-bottom: 1.5cqw;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.dh-title {
+  display: flex;
+  align-items: center;
+  gap: 1.5cqw;
+}
+.dh-title b {
+  font: 700 3.2cqw 'Bricolage Grotesque', var(--font-sans);
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+.dh-status {
+  font-size: 2.2cqw;
+  color: #94a3b8;
+  display: inline-flex;
+  align-items: center;
+  gap: 1cqw;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.8cqw 2cqw;
+  border-radius: 99px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.dh .live-dot {
+  width: 1.4cqw;
+  height: 1.4cqw;
+  background: #10b981;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 6px #10b981;
+  animation: pulseLive 2s infinite ease-in-out;
+}
+@keyframes pulseLive {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+
+.st {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8cqw;
+}
+.st div {
+  background: rgba(30, 41, 59, 0.7);
+  border-radius: 1.5cqw;
+  padding: 1.8cqw 2cqw;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+}
+.st small {
+  font-size: 2cqw;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: block;
+}
+.st b {
+  display: block;
+  font: 700 4.4cqw 'Bricolage Grotesque', var(--font-sans);
+  color: #ffffff;
+  margin: 0.6cqw 0 0.4cqw;
+}
+.st .stat-trend {
+  font-size: 2cqw;
+  font-weight: 600;
+  color: #10b981;
+  display: block;
+}
+
+.ch {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 2.2cqw;
+  margin-top: 2cqw;
+}
+.ch-chart-card, .tk {
+  background: rgba(30, 41, 59, 0.55);
+  border-radius: 1.5cqw;
+  padding: 2cqw;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.ch-head {
+  font-size: 2.2cqw;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 1.5cqw;
+  letter-spacing: 0.02em;
+}
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.2cqw;
+  height: 20cqw;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding-bottom: 1cqw;
+}
+.bars i {
+  flex: 1;
+  background: linear-gradient(180deg, #fbbf24 0%, #d97706 100%);
+  border-radius: .6cqw .6cqw 0 0;
+  height: 100%;
+  transform-origin: bottom;
+  will-change: transform;
+  box-shadow: 0 0 6px rgba(217, 119, 6, 0.25);
+}
+.tk b {
+  font: 700 2.2cqw 'Bricolage Grotesque', var(--font-sans);
+  color: #f1f5f9;
+  display: block;
+  margin-bottom: 1cqw;
+}
+.tk p {
+  font-size: 2cqw;
+  margin-top: 1cqw;
+  line-height: 1.35;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1cqw;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 0.8cqw;
+}
+.tk em {
+  font-style: normal;
+  font-size: 1.8cqw;
+  font-weight: 700;
+  padding: 0.4cqw 1.2cqw;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.tk em.in-prog {
+  background: rgba(59, 130, 246, 0.22);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+.tk em.scheduled {
+  background: rgba(234, 179, 8, 0.22);
+  color: #facc15;
+  border: 1px solid rgba(234, 179, 8, 0.3);
+}
+.tk em.resolved {
+  background: rgba(16, 185, 129, 0.22);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+/* ===================================================================
+   SCENE 5: THE BALCONY / TERRACE — PRIVATE ADVISORY
+   =================================================================== */
+.copy.tc {
+  width: min(34vw, 470px);
+}
+.tc-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.tc-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(11, 31, 58, 0.05);
+  border: 1px solid rgba(11, 31, 58, 0.12);
+  color: var(--navy-800);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.tc-pill:hover {
+  background: var(--navy-900);
+  color: #ffffff;
+  border-color: var(--navy-900);
+  transform: translateY(-1px);
+}
+.tc-pill svg {
+  color: var(--gold-600);
+  transition: color 0.2s ease;
+}
+.tc-pill:hover svg {
+  color: var(--gold-300);
+}
+.tc-btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.btn-subtle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(11, 31, 58, 0.05);
+  color: var(--navy-800);
+  border: 1px solid rgba(11, 31, 58, 0.15);
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-subtle:hover {
+  background: rgba(11, 31, 58, 0.12);
+  border-color: var(--navy-900);
+  color: var(--navy-950);
+  transform: translateY(-2px);
+}
+
+/* ===================================================================
+   RESPONSIVE OPTIMIZATIONS
+   =================================================================== */
+@media (max-width: 860px) {
+  .parallax-dots { display: none; }
+  .scene .glass,
+  .copy.glass { padding: 18px 20px; }
+  .copy { left: 5vw; top: 12svh; width: 90vw; }
+  .copy p { display: none; }
+  .copy h2 { font-size: 24px; margin-bottom: 8px; }
+  .hcopy { top: 48%; }
+  .hero-stats-row { gap: 16px; }
+  .hcopy p { font-size: 14px; }
+  .plate.k { --pw: 170vw; }
+  .plate.wd { --pw: 235vw; }
+  .plate.o { --pw: 230vw; left: 2vw; }
+  .copy.kc, .copy.wc, .copy.tc {
+    left: 5vw !important;
+    top: 12svh !important;
+    width: 90vw !important;
+    padding: 16px 18px !important;
+  }
+  .copy.kc p, .copy.tc p { display: none; }
+  .tc-contacts { gap: 6px; margin-bottom: 12px; }
+  .tc-pill { font-size: 11.5px; padding: 4px 10px; }
+  .tc-btn-row { flex-direction: column; align-items: stretch; gap: 8px; }
+  .tc-btn-row .btn, .tc-btn-row .btn-subtle { width: 100%; justify-content: center; }
+}

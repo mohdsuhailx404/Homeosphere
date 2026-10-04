@@ -1,0 +1,100 @@
+# ==============================================================================
+# Homeosphere - Production Apache Configuration (.htaccess)
+# Performance, Security, Caching, Gzip & Clean Routing
+# ==============================================================================
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Allow direct access to existing files and directories
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Clean Sitemap & AdSense Routing
+  RewriteRule ^sitemap\.xml$ sitemap.php [L]
+  RewriteRule ^ads\.txt$ ads.txt [L]
+
+  # API routing
+  RewriteRule ^api/search-suggest/?$ includes/handlers/search.php [L,QSA]
+
+  # Clean URL routing
+  RewriteRule ^$ index.php [L]
+  RewriteRule ^about/?$ pages/about.php [L]
+  RewriteRule ^user/?$ pages/roles.php [L]
+  RewriteRule ^roles/?$ pages/roles.php [L]
+  RewriteRule ^user-roles/?$ pages/roles.php [L]
+  RewriteRule ^properties/?$ pages/properties.php [L]
+  RewriteRule ^services/?$ pages/services.php [L]
+  RewriteRule ^professionals/?$ pages/professionals.php [L]
+  RewriteRule ^insights/?$ pages/management.php [L]
+  RewriteRule ^management/?$ pages/management.php [L]
+  RewriteRule ^property-management/?$ pages/management.php [L]
+  RewriteRule ^blogs/?$ pages/blog/index.php [L]
+  RewriteRule ^blog/?$ pages/blog/index.php [L]
+  RewriteRule ^blogs/([a-z0-9-]+)/?$ pages/blog/post.php?slug=$1 [L,QSA]
+  RewriteRule ^blog/([a-z0-9-]+)/?$ pages/blog/post.php?slug=$1 [L,QSA]
+  RewriteRule ^contact/?$ pages/contact.php [L]
+  RewriteRule ^dashboard/?$ pages/dashboard.php [L]
+  RewriteRule ^profile/?$ pages/dashboard.php [L]
+  RewriteRule ^login/?$ pages/auth.php [L]
+  RewriteRule ^signup/?$ pages/auth.php [L]
+  RewriteRule ^auth/?$ pages/auth.php [L]
+  RewriteRule ^privacy-policy/?$ legal-pages/privacy-policy.php [L]
+  RewriteRule ^terms-and-conditions/?$ legal-pages/terms-and-conditions.php [L]
+  RewriteRule ^terms/?$ legal-pages/terms-and-conditions.php [L]
+  RewriteRule ^cookie-policy/?$ legal-pages/cookie-policy.php [L]
+  RewriteRule ^disclaimer/?$ legal-pages/disclaimer.php [L]
+
+  # 404 handler
+  ErrorDocument 404 /pages/404.php
+</IfModule>
+
+# ==============================================================================
+# Gzip / Brotli Compression
+# ==============================================================================
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript application/json
+  AddOutputFilterByType DEFLATE application/xml application/xhtml+xml application/rss+xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ==============================================================================
+# Browser Caching & Far-Future Expire Headers
+# ==============================================================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+
+  # Images & Media
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+
+  # CSS & JS
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+
+  # Fonts
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType application/font-woff "access plus 1 year"
+  ExpiresByType application/font-woff2 "access plus 1 year"
+</IfModule>
+
+# ==============================================================================
+# Security & Privacy Headers
+# ==============================================================================
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>

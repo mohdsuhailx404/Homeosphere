@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Allow: /ads.txt
+Allow: /sitemap.xml
+Disallow: /api/
+Disallow: /includes/
+
+Sitemap: https://testing.homeosphere.in/sitemap.xml
