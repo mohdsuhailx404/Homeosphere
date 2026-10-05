@@ -228,7 +228,7 @@ function section_heading(string $eyebrow, string $title, string $subtitle = '', 
 }
 
 /** CTA band. */
-function cta_band(string $title, string $subtitle, array $primary = ['label'=>'Get Started','href'=>'/signup'], array $secondary = null): string {
+function cta_band(string $title, string $subtitle, array $primary = ['label'=>'Get Started','href'=>'/signup'], ?array $secondary = null): string {
   ob_start();
   ?>
   <div class="cta-band">

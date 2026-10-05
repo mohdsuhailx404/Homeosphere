@@ -3,6 +3,10 @@
  * Homeosphere - site configuration.
  */
 
+// Suppress deprecations and runtime warnings from printing onto HTML pages in production
+ini_set('display_errors', '0');
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
+
 const SITE_NAME     = 'Homeosphere';
 const SITE_TAGLINE  = 'Everything Your Home Needs, Under One Digital Roof';
 const SITE_URL      = 'https://testing.homeosphere.in';
