@@ -4,10 +4,12 @@
  */
 
 if (session_status() === PHP_SESSION_NONE) {
-    // Set secure session parameters
+    if (is_dir('/tmp') && is_writable('/tmp')) {
+        @session_save_path('/tmp');
+    }
     ini_set('session.cookie_httponly', '1');
     ini_set('session.use_only_cookies', '1');
-    session_start();
+    @session_start();
 }
 
 /**

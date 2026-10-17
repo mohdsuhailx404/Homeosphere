@@ -3,8 +3,7 @@
  * Homeosphere - site configuration.
  */
 
-// Suppress deprecations and runtime warnings from printing onto HTML pages in production
-ini_set('display_errors', '0');
+// Suppress deprecations from printing onto HTML pages in production
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
 
 const SITE_NAME     = 'Homeosphere';

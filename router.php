@@ -3,7 +3,7 @@
  * PHP built-in dev server router.
  * Maps clean URLs to the right PHP files (mirrors .htaccess for Apache).
  */
-ini_set('display_errors', '0');
+// Report errors for runtime diagnostics
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
 
 $uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
