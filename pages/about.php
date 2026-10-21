@@ -115,56 +115,35 @@ header_partial('about');
       <!-- Left Narrative -->
       <div class="about-hero-content">
         <p class="breadcrumb"><a href="<?= url('/') ?>">Home</a><span class="sep">/</span>About Us</p>
-        <span class="about-hero-pill">
-          <?= icon('sparkles', 14) ?> INDIA'S COMPLETE HOME ECOSYSTEM
-        </span>
+        <p class="eyebrow">ABOUT HOMEOSPHERE</p>
         <h1 class="about-hero-title">Everything Your Home Needs, <span class="text-gold-gradient">Under One Digital Roof.</span></h1>
         <p class="about-hero-lead">
           Homeosphere was engineered to solve India's most stressful home dilemmas. We unite verified property discovery, trusted on-demand trade professionals, and intelligent property management into a single, cohesive ecosystem built around how you actually live.
         </p>
-
-        <!-- Sleek In-Page Navigation Ribbon Dock -->
-        <div class="about-nav-dock-wrap">
-          <div class="about-nav-dock">
-            <span class="dock-label"><?= icon('compass', 14) ?> EXPLORE:</span>
-            <div class="dock-links-scroll">
-              <a href="#reality" class="dock-link"><span class="dock-num">01</span> The Problem</a>
-              <a href="#pillars" class="dock-link"><span class="dock-num">02</span> Three Pillars</a>
-              <a href="#journey" class="dock-link"><span class="dock-num">03</span> Our Journey</a>
-              <a href="#roles" class="dock-link"><span class="dock-num">04</span> Who We Serve</a>
-              <a href="#manifesto" class="dock-link"><span class="dock-num">05</span> Core Values</a>
-              <a href="#community" class="dock-link"><span class="dock-num">06</span> Community</a>
-            </div>
-          </div>
-        </div>
       </div>
 
-      <!-- Right Visual Showcase with Floating Badges -->
+      <!-- Right Visual Showcase with Dynamic Hover Effect -->
       <div class="about-hero-visual">
-        <div class="hero-image-stack">
-          <div class="hero-img-main-wrap">
+        <div class="hero-showcase-card">
+          <!-- Main Architectural Frame -->
+          <div class="hero-frame-main">
             <img src="/assets/img/parallax/living.jpg" alt="Homeosphere Architectural Living Room" class="hero-img-main" loading="eager">
+            <div class="hero-frame-overlay">
+              <span class="hero-frame-tag"><?= icon('shield', 14) ?> 100% VERIFIED ECOSYSTEM</span>
+            </div>
           </div>
-          <div class="hero-img-sub-wrap">
+
+          <!-- Secondary Overlapping Frame -->
+          <div class="hero-frame-sub">
             <img src="/assets/img/service/interior_design.jpg" alt="Homeosphere Verified Professional" class="hero-img-sub" loading="lazy">
-          </div>
-
-          <!-- Floating Badges on Navy Background -->
-          <div class="hero-badge hero-badge-top">
-            <div class="hero-badge-icon" style="background:#10b981;"><?= icon('shield', 18) ?></div>
-            <div>
-              <strong>100% Verified Listings</strong>
-              <small>Zero-spam direct owner contact</small>
+            <div class="hero-sub-badge">
+              <span class="sub-badge-dot"></span>
+              <span>5,000+ Vetted Pros</span>
             </div>
           </div>
 
-          <div class="hero-badge hero-badge-bottom">
-            <div class="hero-badge-icon" style="background:var(--gold-500);color:var(--navy-950);"><?= icon('wrench', 18) ?></div>
-            <div>
-              <strong>5,000+ Vetted Pros</strong>
-              <small>Standardized upfront rate cards</small>
-            </div>
-          </div>
+          <!-- Ambient Decorative Glow -->
+          <div class="hero-ambient-glow"></div>
         </div>
       </div>
     </div>
