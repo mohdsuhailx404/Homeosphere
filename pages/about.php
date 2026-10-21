@@ -108,8 +108,8 @@ head([
 header_partial('about');
 ?>
 
-<!-- 1. EDITORIAL SPLIT HERO -->
-<section class="about-hero-section">
+<!-- 1. EDITORIAL SPLIT HERO (SIGNATURE NAVY BLUE BACKGROUND) -->
+<section class="page-head about-hero-section">
   <div class="container-x">
     <div class="about-hero-grid">
       <!-- Left Narrative -->
@@ -123,14 +123,19 @@ header_partial('about');
           Homeosphere was engineered to solve India's most stressful home dilemmas. We unite verified property discovery, trusted on-demand trade professionals, and intelligent property management into a single, cohesive ecosystem built around how you actually live.
         </p>
 
-        <!-- Quick Anchor Jump Chips -->
-        <div class="about-quick-links">
-          <a href="#reality" class="about-quick-chip"><span>01</span> The Problem &amp; Solution</a>
-          <a href="#pillars" class="about-quick-chip"><span>02</span> Three Pillars</a>
-          <a href="#journey" class="about-quick-chip"><span>03</span> Our Journey</a>
-          <a href="#roles" class="about-quick-chip"><span>04</span> Who We Serve</a>
-          <a href="#manifesto" class="about-quick-chip"><span>05</span> Our Values</a>
-          <a href="#community" class="about-quick-chip"><span>06</span> Community Voices</a>
+        <!-- Sleek In-Page Navigation Ribbon Dock -->
+        <div class="about-nav-dock-wrap">
+          <div class="about-nav-dock">
+            <span class="dock-label"><?= icon('compass', 14) ?> EXPLORE:</span>
+            <div class="dock-links-scroll">
+              <a href="#reality" class="dock-link"><span class="dock-num">01</span> The Problem</a>
+              <a href="#pillars" class="dock-link"><span class="dock-num">02</span> Three Pillars</a>
+              <a href="#journey" class="dock-link"><span class="dock-num">03</span> Our Journey</a>
+              <a href="#roles" class="dock-link"><span class="dock-num">04</span> Who We Serve</a>
+              <a href="#manifesto" class="dock-link"><span class="dock-num">05</span> Core Values</a>
+              <a href="#community" class="dock-link"><span class="dock-num">06</span> Community</a>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -144,7 +149,7 @@ header_partial('about');
             <img src="/assets/img/service/interior_design.jpg" alt="Homeosphere Verified Professional" class="hero-img-sub" loading="lazy">
           </div>
 
-          <!-- Floating Badges -->
+          <!-- Floating Badges on Navy Background -->
           <div class="hero-badge hero-badge-top">
             <div class="hero-badge-icon" style="background:#10b981;"><?= icon('shield', 18) ?></div>
             <div>
@@ -154,7 +159,7 @@ header_partial('about');
           </div>
 
           <div class="hero-badge hero-badge-bottom">
-            <div class="hero-badge-icon" style="background:var(--gold-500);color:var(--navy-900);"><?= icon('wrench', 18) ?></div>
+            <div class="hero-badge-icon" style="background:var(--gold-500);color:var(--navy-950);"><?= icon('wrench', 18) ?></div>
             <div>
               <strong>5,000+ Vetted Pros</strong>
               <small>Standardized upfront rate cards</small>
@@ -166,8 +171,8 @@ header_partial('about');
   </div>
 </section>
 
-<!-- 2. LIVE PLATFORM STATS RIBBON -->
-<section class="container-x stats-band" style="margin-top:-1.5rem;position:relative;z-index:3;">
+<!-- 2. LIVE PLATFORM STATS RIBBON (FLOATING OVER HERO) -->
+<section class="container-x stats-band" style="position:relative;z-index:10;">
   <div class="stats-grid">
     <?php foreach ($statData as $s): ?>
       <div class="stat">
