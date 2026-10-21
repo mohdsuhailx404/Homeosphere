@@ -1220,4 +1220,68 @@
       }
     });
   }
+
+  // Architectural Timeline: Moving Downwards Progress & Lighting Next Phase on Scroll
+  function initArchTimeline() {
+    var wrap = document.getElementById('archTimelineWrap');
+    var progress = document.getElementById('archTimelineProgress');
+    if (!wrap || !progress) return;
+
+    var steps = wrap.querySelectorAll('.arch-timeline-step');
+    if (!steps.length) return;
+
+    var ticking = false;
+
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(function () {
+          updateTimeline();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    function updateTimeline() {
+      var windowH = window.innerHeight || document.documentElement.clientHeight;
+      var triggerY = windowH * 0.58;
+
+      var firstMarker = steps[0].querySelector('.arch-step-marker');
+      var lastMarker = steps[steps.length - 1].querySelector('.arch-step-marker');
+      if (!firstMarker || !lastMarker) return;
+
+      var firstRect = firstMarker.getBoundingClientRect();
+      var lastRect = lastMarker.getBoundingClientRect();
+      var firstCenter = firstRect.top + firstRect.height / 2;
+      var lastCenter = lastRect.top + lastRect.height / 2;
+      var distance = lastCenter - firstCenter;
+
+      var ratio = 0;
+      if (distance > 0) {
+        ratio = (triggerY - firstCenter) / distance;
+        ratio = Math.max(0, Math.min(1, ratio));
+      }
+
+      progress.style.height = (ratio * 100) + '%';
+
+      steps.forEach(function (step) {
+        var marker = step.querySelector('.arch-step-marker');
+        if (!marker) return;
+        var markerRect = marker.getBoundingClientRect();
+        var markerCenter = markerRect.top + markerRect.height / 2;
+
+        if (markerCenter <= triggerY) {
+          step.classList.add('is-active');
+        } else {
+          step.classList.remove('is-active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    updateTimeline();
+  }
+  initArchTimeline();
 })();
+

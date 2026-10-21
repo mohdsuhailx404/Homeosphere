@@ -46,7 +46,7 @@ $timeline = [
       'Unified Ecosystem Architecture Approved',
       'Founding Engineering & Real Estate Research Team Assembled'
     ],
-    'chips'       => ['#ArchitectureDrafted', '#ZeroSpamProtocol', '#HQGurugram']
+    'chips'       => ['Architecture Drafted', 'Zero-Spam Protocol', 'HQ Gurugram']
   ],
   [
     'phase'       => '02',
@@ -116,7 +116,7 @@ header_partial('about');
       <div class="about-hero-content">
         <p class="breadcrumb"><a href="<?= url('/') ?>">Home</a><span class="sep">/</span>About Us</p>
         <p class="eyebrow">ABOUT HOMEOSPHERE</p>
-        <h1 class="about-hero-title">Everything Your Home Needs, <span class="text-gold-gradient">Under One Digital Roof.</span></h1>
+        <h1 class="about-hero-title">Everything Your Home Needs, Under One Digital Roof.</h1>
         <p class="about-hero-lead">
           Homeosphere was engineered to solve India's most stressful home dilemmas. We unite verified property discovery, trusted on-demand trade professionals, and intelligent property management into a single, cohesive ecosystem built around how you actually live.
         </p>
@@ -327,8 +327,12 @@ header_partial('about');
       <p style="font-size:1rem;color:var(--navy-600);line-height:1.6;margin:0;">Follow how we mapped, engineered, and scaled India's all-in-one home platform step by step.</p>
     </div>
 
-    <div class="arch-timeline-wrap">
-      <div class="arch-timeline-spine"></div>
+    <div class="arch-timeline-wrap" id="archTimelineWrap">
+      <div class="arch-timeline-spine">
+        <div class="arch-timeline-progress" id="archTimelineProgress">
+          <span class="arch-timeline-glow-tip"></span>
+        </div>
+      </div>
 
       <?php foreach ($timeline as $t): ?>
         <div class="arch-timeline-step reveal">
@@ -353,7 +357,7 @@ header_partial('about');
 
             <div class="arch-step-chips">
               <?php foreach ($t['chips'] as $cIdx => $chip): ?>
-                <span class="arch-step-chip <?= $cIdx === 0 ? 'highlight' : '' ?>"><?= e($chip) ?></span>
+                <span class="arch-step-chip <?= $cIdx === 0 ? 'highlight' : '' ?>"><?= e(ltrim($chip, '#')) ?></span>
               <?php endforeach; ?>
             </div>
           </div>
