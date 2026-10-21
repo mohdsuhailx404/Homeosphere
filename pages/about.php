@@ -8,149 +8,370 @@ require_once __DIR__ . '/../includes/cards.php';
 
 $statData = stats();
 $roles = user_roles();
+$allTestimonials = testimonials();
+
 $values = [
-  ['shield','Trust','Verification first — every listing, every professional, every transaction.'],
-  ['love','Customer Obsession','We design every screen around the person using it, not the platform.'],
-  ['building','Completeness','One ecosystem for every home need — discovery, services, management.'],
-  ['users','Community','A network where homeowners, tenants, and professionals all win together.'],
-];
-$timeline = [
   [
-    'year'        => '2024',
-    'stage_desc'  => 'Core Foundation & Architecture',
-    'stage'       => 'The Founding Blueprint',
-    'moniker'     => 'Foundation',
-    'icon'        => 'compass',
-    'badge'       => 'Phase 01 • Foundation',
-    'title'       => 'The Spark & Architectural Blueprint',
-    'subtitle'    => 'Engineering one unified roof for every home decision',
-    'desc'        => 'Real estate in India was broken by fake listings and spam brokers, while home repairs suffered from unverified handymen and hidden costs. Homeosphere was conceived to bridge this divide — engineering a unified digital ecosystem where verified property discovery, trusted trade professionals, and comprehensive property management converge under one digital roof.',
-    'highlights'  => ['Zero-Spam Verification Protocol Drafted', 'Unified Ecosystem Architecture Approved', 'Founding Engineering & Real Estate Team Assembled'],
-    'stats_label' => 'Founding Vision',
-    'stats_value' => '100% Unified',
-    'coord'       => '28.4595° N, 77.0266° E (HQ)',
-    'tag'         => 'FOUNDATIONAL BLUEPRINT',
-    'chips'       => ['#ArchitectureDrafted', '#ZeroSpamProtocol', '#CoreEngineSeed']
+    'icon'  => 'shield',
+    'title' => 'Trust by Verification',
+    'desc'  => 'Every listing is checked with real title documents and physical photos before appearing online. Every trade pro is identity-checked and background-vetted.'
   ],
   [
+    'icon'  => 'love',
+    'title' => 'Obsessed with the Resident',
+    'desc'  => 'We engineer every screen around the human experience of finding peace and comfort at home, never for intrusive advertising algorithms or spam.'
+  ],
+  [
+    'icon'  => 'building',
+    'title' => 'Complete Home Lifecycle',
+    'desc'  => 'We do not abandon you at key handover. From discovery to Sunday electrical fixes, lease renewals to rent tracking, we provide total living care.'
+  ],
+  [
+    'icon'  => 'users',
+    'title' => 'Community Win-Win',
+    'desc'  => 'An ecosystem where home seekers find honesty, landlords protect their investments, tenants live comfortably, and skilled pros earn steady, fair livelihoods.'
+  ],
+];
+
+$timeline = [
+  [
+    'phase'       => '01',
+    'year'        => '2024',
+    'badge'       => 'Phase 01 • The Founding Blueprint',
+    'title'       => 'The Spark & Architectural Blueprint',
+    'subtitle'    => 'Engineering one unified digital roof for every home decision',
+    'desc'        => 'Real estate in India was broken by fake photo bait-and-switch listings and endless broker spam, while home maintenance suffered from unverified handymen and hidden charges. Homeosphere was conceived in Gurugram to bridge this divide — engineering an integrated digital ecosystem uniting verified discovery, vetted trade pros, and automated property management.',
+    'highlights'  => [
+      'Zero-Spam Verification Protocol Drafted',
+      'Unified Ecosystem Architecture Approved',
+      'Founding Engineering & Real Estate Research Team Assembled'
+    ],
+    'chips'       => ['#ArchitectureDrafted', '#ZeroSpamProtocol', '#HQGurugram']
+  ],
+  [
+    'phase'       => '02',
     'year'        => '2025',
-    'stage_desc'  => '12 Metro Cities Live',
-    'stage'       => 'Marketplace Launch',
-    'moniker'     => 'Marketplace',
-    'icon'        => 'map-pin',
-    'badge'       => 'Phase 02 • Groundbreak',
-    'title'       => 'Marketplace Discovery Takes Flight',
-    'subtitle'    => 'Direct owner connections go live across 12 primary cities',
-    'desc'        => 'With our proprietary photo-matching and ownership verification engines built, Homeosphere launched across 12 high-growth metropolitan hubs including Delhi NCR, Bengaluru, Mumbai, and Hyderabad. Thousands of property seekers and owners experienced transparent, broker-free real estate discovery backed by verified trade professionals for the first time.',
-    'highlights'  => ['12 Metropolitan Hubs Launched Simultaneously', 'First 2,500 Direct-Owner Properties Listed', 'Comprehensive Background-Check Pipeline for Trade Pros'],
-    'stats_label' => 'Initial Cities',
-    'stats_value' => '12 Metros',
-    'coord'       => '12 METRO HUBS ACTIVE',
-    'tag'         => 'METROPOLITAN RADAR',
+    'badge'       => 'Phase 02 • Groundbreak & Launch',
+    'title'       => '12-City Marketplace Launch',
+    'subtitle'    => 'Direct owner connections go live across high-growth metros',
+    'desc'        => 'With our proprietary photo-matching and ownership verification engines built, Homeosphere launched across 12 high-growth metropolitan hubs. Thousands of property seekers and owners experienced transparent, broker-free real estate discovery backed by verified trade professionals for the first time.',
+    'highlights'  => [
+      '12 Metropolitan Hubs Launched Simultaneously',
+      'First 2,500 Direct-Owner Properties Listed',
+      'Strict Ownership Document & Photo Verification Protocol Live'
+    ],
     'chips'       => ['Delhi NCR', 'Bengaluru', 'Mumbai', 'Hyderabad', 'Pune', 'Chennai']
   ],
   [
+    'phase'       => '03',
     'year'        => '2025',
-    'stage_desc'  => '10 Trade Verticals & Owner OS',
-    'stage'       => 'Services & Management OS',
-    'moniker'     => 'Services & OS',
-    'icon'        => 'wrench',
-    'badge'       => 'Phase 03 • Convergence',
-    'title'       => 'Integrated Services & Smart Management',
+    'badge'       => 'Phase 03 • Ecosystem Convergence',
+    'title'       => '10 Trade Verticals & Owner OS',
     'subtitle'    => 'Complete lifecycle care for every home',
-    'desc'        => 'Finding a property is only chapter one of the journey. In our third major phase, Homeosphere rolled out on-demand services across 10 specialized trade verticals alongside our Property Owner Management Dashboard — introducing seamless digital leases, automated rent tracking, and verified maintenance dispatch.',
-    'highlights'  => ['10 On-Demand Service Verticals Activated', 'Owner Dashboard with Rent & Document Tracking', 'Transparent Standardized Rate Cards Guaranteed'],
-    'stats_label' => 'Service Verticals',
-    'stats_value' => '10 Trades',
-    'coord'       => 'LIFECYCLE OS v3.0',
-    'tag'         => 'ECOSYSTEM OS',
-    'chips'       => ['Electrical', 'Cleaning', 'Plumbing', 'AC & Climate', 'Owner Portal']
+    'desc'        => 'Finding a property is only chapter one of the journey. In our third major phase, Homeosphere rolled out on-demand services across 10 specialized trade verticals alongside our Property Owner Management Dashboard — introducing digital leases, automated rent tracking, and verified maintenance dispatch.',
+    'highlights'  => [
+      '10 On-Demand Service Verticals Activated',
+      'Owner Dashboard with Rent & Document Tracking',
+      'Transparent Standardized Rate Cards Guaranteed'
+    ],
+    'chips'       => ['Electrical', 'Cleaning', 'Plumbing', 'AC & Climate', 'Owner Portal', 'Digital Leases']
   ],
   [
+    'phase'       => '04',
     'year'        => '2026',
-    'stage_desc'  => 'Nationwide Reach • 50+ Cities',
-    'stage'       => 'India\'s Home Ecosystem',
-    'moniker'     => 'Nationwide',
-    'icon'        => 'sparkles',
-    'badge'       => 'Phase 04 • Scale & Orbit',
+    'badge'       => 'Phase 04 • Scale & Nationwide Reach',
     'title'       => 'India\'s Unified Living Ecosystem',
     'subtitle'    => '50+ cities, 10,000+ homes, 5,000+ verified pros',
     'desc'        => 'Today, Homeosphere stands as India\'s complete home ecosystem. Connecting property seekers, owners, tenants, and vetted trade professionals across 50+ cities, our platform powers thousands of smooth relocations, verified home transformations, and reliable transactions daily with dedicated 24/7 support.',
-    'highlights'  => ['50+ Cities Active Across India', '10,000+ Verified Properties in Inventory', '5,000+ Vetted Service Pros with 24/7 Support'],
-    'stats_label' => 'Verified Pros',
-    'stats_value' => '5,000+',
-    'coord'       => 'PAN-INDIA REACH',
-    'tag'         => 'NATIONWIDE EXPANSION',
-    'chips'       => ['50+ Cities Live', '10K+ Properties', '5K+ Pros', '24/7 Concierge']
+    'highlights'  => [
+      '50+ Cities Active Across India',
+      '10,000+ Verified Properties in Inventory',
+      '5,000+ Vetted Service Pros with 24/7 Concierge Support'
+    ],
+    'chips'       => ['50+ Cities Live', '10K+ Properties', '5K+ Pros', '24/7 Concierge', 'Pan-India']
   ],
 ];
 
 head([
     'title'       => 'About Homeosphere — India\'s Complete Home Ecosystem Story',
-    'description' => 'Homeosphere simplifies how you discover, manage, and maintain homes by combining real estate technology with verified professional service networks.',
-    'keywords'    => 'about homeosphere, real estate ecosystem, property management platform, home services company',
+    'description' => 'Discover how Homeosphere transforms real estate and home maintenance across India with verified properties, trusted service professionals, and smart property management.',
+    'keywords'    => 'about homeosphere, real estate ecosystem, property management platform, home services company, verified properties india',
     'canonical'   => '/about',
     'jsonld'      => [
         '@context'    => 'https://schema.org',
         '@type'       => 'AboutPage',
         'name'        => 'About Homeosphere',
         'url'         => url('/about'),
-        'description' => 'Homeosphere simplifies how you discover, manage, and maintain homes.',
+        'description' => 'Homeosphere simplifies how you discover, manage, and maintain homes under one digital roof.',
     ],
 ]);
 header_partial('about');
 ?>
 
-<section class="page-head">
+<!-- 1. EDITORIAL SPLIT HERO -->
+<section class="about-hero-section">
   <div class="container-x">
-    <p class="breadcrumb"><a href="<?= url('/') ?>">Home</a><span class="sep">/</span>About Us</p>
-    <p class="eyebrow">About Homeosphere</p>
-    <h1>Everything your home needs, under one digital roof</h1>
-    <p>Homeosphere was founded to simplify the way people discover, manage, and maintain their homes — by combining real estate technology, digital marketplaces, and professional service networks into a single, trustworthy ecosystem.</p>
-  </div>
-</section>
+    <div class="about-hero-grid">
+      <!-- Left Narrative -->
+      <div class="about-hero-content">
+        <p class="breadcrumb"><a href="<?= url('/') ?>">Home</a><span class="sep">/</span>About Us</p>
+        <span class="about-hero-pill">
+          <?= icon('sparkles', 14) ?> INDIA'S COMPLETE HOME ECOSYSTEM
+        </span>
+        <h1 class="about-hero-title">Everything Your Home Needs, <span class="text-gold-gradient">Under One Digital Roof.</span></h1>
+        <p class="about-hero-lead">
+          Homeosphere was engineered to solve India's most stressful home dilemmas. We unite verified property discovery, trusted on-demand trade professionals, and intelligent property management into a single, cohesive ecosystem built around how you actually live.
+        </p>
 
-<section class="container-x stats-band">
-  <div class="stats-grid">
-    <?php foreach ($statData as $s): ?>
-      <div class="stat"><p class="stat-value"><?= e($s['value']) ?></p><p class="stat-label"><?= e($s['label']) ?></p></div>
-    <?php endforeach; ?>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container-x">
-    <div class="grid grid-2">
-      <!-- Mission Card -->
-      <div class="card card-hover card-pad about-feature-card reveal" style="display: flex; flex-direction: column; align-items: flex-start; gap: 1rem;">
-        <div class="about-card-icon" style="display:grid;place-items:center;width:3rem;height:3rem;border-radius:1rem;background:var(--gold-500);color:var(--navy-900); flex-shrink:0;"><?= icon('target', 24) ?></div>
-        <div>
-          <h2 style="font-size:1.5rem; margin: 0;">Our Mission</h2>
-          <p style="color:var(--navy-600); margin-top:0.5rem;"><?= e("To make every home transaction and service experience simple, transparent, and reliable — whether you're buying your first apartment, renting a studio, or hiring a plumber on a Sunday.") ?></p>
+        <!-- Quick Anchor Jump Chips -->
+        <div class="about-quick-links">
+          <a href="#reality" class="about-quick-chip"><span>01</span> The Problem &amp; Solution</a>
+          <a href="#pillars" class="about-quick-chip"><span>02</span> Three Pillars</a>
+          <a href="#journey" class="about-quick-chip"><span>03</span> Our Journey</a>
+          <a href="#roles" class="about-quick-chip"><span>04</span> Who We Serve</a>
+          <a href="#manifesto" class="about-quick-chip"><span>05</span> Our Values</a>
+          <a href="#community" class="about-quick-chip"><span>06</span> Community Voices</a>
         </div>
       </div>
-      <!-- Vision Card -->
-      <div class="card card-hover card-pad about-feature-card reveal" style="display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; transition-delay:120ms">
-        <div class="about-card-icon" style="display:grid;place-items:center;width:3rem;height:3rem;border-radius:1rem;background:var(--gold-500);color:var(--navy-900); flex-shrink:0;"><?= icon('eye', 24) ?></div>
-        <div>
-          <h2 style="font-size:1.5rem; margin: 0;">Our Vision</h2>
-          <p style="color:var(--navy-600); margin-top:0.5rem;"><?= e("To become India's most trusted digital home management platform — the first name that comes to mind for anything related to finding, running, or caring for a home.") ?></p>
+
+      <!-- Right Visual Showcase with Floating Badges -->
+      <div class="about-hero-visual">
+        <div class="hero-image-stack">
+          <div class="hero-img-main-wrap">
+            <img src="/assets/img/parallax/living.jpg" alt="Homeosphere Architectural Living Room" class="hero-img-main" loading="eager">
+          </div>
+          <div class="hero-img-sub-wrap">
+            <img src="/assets/img/service/interior_design.jpg" alt="Homeosphere Verified Professional" class="hero-img-sub" loading="lazy">
+          </div>
+
+          <!-- Floating Badges -->
+          <div class="hero-badge hero-badge-top">
+            <div class="hero-badge-icon" style="background:#10b981;"><?= icon('shield', 18) ?></div>
+            <div>
+              <strong>100% Verified Listings</strong>
+              <small>Zero-spam direct owner contact</small>
+            </div>
+          </div>
+
+          <div class="hero-badge hero-badge-bottom">
+            <div class="hero-badge-icon" style="background:var(--gold-500);color:var(--navy-900);"><?= icon('wrench', 18) ?></div>
+            <div>
+              <strong>5,000+ Vetted Pros</strong>
+              <small>Standardized upfront rate cards</small>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section-alt">
+<!-- 2. LIVE PLATFORM STATS RIBBON -->
+<section class="container-x stats-band" style="margin-top:-1.5rem;position:relative;z-index:3;">
+  <div class="stats-grid">
+    <?php foreach ($statData as $s): ?>
+      <div class="stat">
+        <p class="stat-value"><?= e($s['value']) ?></p>
+        <p class="stat-label"><?= e($s['label']) ?></p>
+      </div>
+    <?php endforeach; ?>
+  </div>
+</section>
+
+<!-- 3. THE INDIAN HOME REALITY (PROBLEM VS SOLUTION) -->
+<section class="section section-alt" id="reality">
   <div class="container-x">
-    <?= section_heading('What we stand for', 'Values that shape every decision') ?>
-    <div class="grid grid-4 mt-12">
-      <?php foreach ($values as $v): ?>
-        <div class="card card-hover card-pad about-value-card reveal" style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem;">
-          <div class="about-card-icon" style="display:grid;place-items:center;width:3rem;height:3rem;border-radius:1rem;background:var(--navy-50);color:var(--navy-800); flex-shrink:0;"><?= icon($v[0], 24) ?></div>
-          <div>
-            <h3 style="font-size:1rem; margin: 0;"><?= e($v[1]) ?></h3>
-            <p style="font-size:.875rem;color:var(--navy-500);margin-top:.375rem"><?= e($v[2]) ?></p>
+    <?= section_heading('Why We Built Homeosphere', 'The Indian Home Reality vs. The Homeosphere Standard', 'Finding, maintaining, or renting a home in India was fragmented and chaotic. Here is how we engineered the alternative.') ?>
+
+    <div class="about-contrast-grid mt-12">
+      <!-- The Old Broken Reality -->
+      <div class="contrast-card contrast-card-old reveal">
+        <div class="contrast-card-header">
+          <span class="contrast-tag old-tag">THE FRAGMENTED REALITY</span>
+          <h3>The Frustration Before Homeosphere</h3>
+          <p>Scattered across fake portals, predatory brokers, and unverified handymen.</p>
+        </div>
+        <ul class="contrast-list">
+          <li>
+            <span class="contrast-icon-cross">✕</span>
+            <div>
+              <strong>Fake Photos &amp; Bait-and-Switch Listings</strong>
+              <p>Wasting entire weekends visiting flats that look nothing like the photos advertised online.</p>
+            </div>
+          </li>
+          <li>
+            <span class="contrast-icon-cross">✕</span>
+            <div>
+              <strong>15+ Unsolicited Broker Spam Calls Daily</strong>
+              <p>Your private phone number leaked across unauthorized agent directories and telemarketers.</p>
+            </div>
+          </li>
+          <li>
+            <span class="contrast-icon-cross">✕</span>
+            <div>
+              <strong>Unvetted Handymen with Arbitrary Pricing</strong>
+              <p>No background checks, unpredictable surge charges, and zero post-service warranty.</p>
+            </div>
+          </li>
+          <li>
+            <span class="contrast-icon-cross">✕</span>
+            <div>
+              <strong>Paper Leases &amp; Chaotic Manual Rent Chasing</strong>
+              <p>Disorganized bank transfers, physical stamp papers, and zero record of repairs or deposits.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- The Homeosphere Standard -->
+      <div class="contrast-card contrast-card-new reveal" style="transition-delay:120ms">
+        <div class="contrast-card-header">
+          <span class="contrast-tag new-tag">THE HOMEOSPHERE STANDARD</span>
+          <h3>Under One Trusted Digital Roof</h3>
+          <p>Every home decision unified with strict verification and seamless digital ease.</p>
+        </div>
+        <ul class="contrast-list">
+          <li>
+            <span class="contrast-icon-check">✓</span>
+            <div>
+              <strong>100% Real-Photo Matching &amp; Title Checks</strong>
+              <p>Every single property is verified with ownership documents and geocodes before listing.</p>
+            </div>
+          </li>
+          <li>
+            <span class="contrast-icon-check">✓</span>
+            <div>
+              <strong>Zero-Spam Privacy Protocol</strong>
+              <p>Chat directly with verified owners and seekers without ever exposing your private number.</p>
+            </div>
+          </li>
+          <li>
+            <span class="contrast-icon-check">✓</span>
+            <div>
+              <strong>Background-Verified Pros &amp; Standard Rates</strong>
+              <p>Police-checked, skill-tested trade pros with guaranteed transparent rate cards.</p>
+            </div>
+          </li>
+          <li>
+            <span class="contrast-icon-check">✓</span>
+            <div>
+              <strong>All-in-One Digital Management OS</strong>
+              <p>Digital rental agreements, automated rent tracking, and 1-click maintenance dispatch.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. THREE CONNECTED PILLARS -->
+<section class="section" id="pillars">
+  <div class="container-x">
+    <?= section_heading('The Ecosystem Architecture', 'Three Connected Pillars. Total Lifecycle Care.', 'Home is not just a one-time transaction — it is an ongoing journey of living, caring, and growing.') ?>
+
+    <div class="grid grid-3 mt-12" style="gap:2rem;">
+      <!-- Pillar 1: Discover -->
+      <div class="about-pillar-card reveal">
+        <div class="pillar-img-wrap">
+          <img src="/assets/img/properties/prop_mumbai.jpg" alt="Homeosphere Property Discovery" class="pillar-img" loading="lazy">
+          <span class="pillar-num-pill">PILLAR 01</span>
+        </div>
+        <div class="pillar-body">
+          <div class="pillar-icon-box"><?= icon('search', 22) ?></div>
+          <h3>DISCOVER</h3>
+          <h4>Real Estate Marketplace</h4>
+          <p>Direct owner buying and renting across 50+ cities. Transparent pricing, verified titles, high-res photos, and neighborhood livability scores.</p>
+          <div class="pillar-tags">
+            <span>Direct Owner</span>
+            <span>Virtual Tours</span>
+            <span>Title Checked</span>
+          </div>
+          <a href="/properties" class="pillar-link">Explore Properties <?= icon('arrow-right', 14) ?></a>
+        </div>
+      </div>
+
+      <!-- Pillar 2: Maintain -->
+      <div class="about-pillar-card reveal" style="transition-delay:100ms">
+        <div class="pillar-img-wrap">
+          <img src="/assets/img/service/interior_design.jpg" alt="Homeosphere Home Services" class="pillar-img" loading="lazy">
+          <span class="pillar-num-pill">PILLAR 02</span>
+        </div>
+        <div class="pillar-body">
+          <div class="pillar-icon-box"><?= icon('wrench', 22) ?></div>
+          <h3>MAINTAIN</h3>
+          <h4>10+ On-Demand Services</h4>
+          <p>Book verified trade professionals with standard upfront pricing. From electrical and deep cleaning to carpentry and complete interior renovations.</p>
+          <div class="pillar-tags">
+            <span>10+ Trades</span>
+            <span>Standard Rate Card</span>
+            <span>Verified Pros</span>
+          </div>
+          <a href="/services" class="pillar-link">Browse Services <?= icon('arrow-right', 14) ?></a>
+        </div>
+      </div>
+
+      <!-- Pillar 3: Manage -->
+      <div class="about-pillar-card reveal" style="transition-delay:200ms">
+        <div class="pillar-img-wrap">
+          <img src="/assets/img/parallax/office.jpg" alt="Homeosphere Property Management OS" class="pillar-img" loading="lazy">
+          <span class="pillar-num-pill">PILLAR 03</span>
+        </div>
+        <div class="pillar-body">
+          <div class="pillar-icon-box"><?= icon('building', 22) ?></div>
+          <h3>MANAGE</h3>
+          <h4>Smart Property OS</h4>
+          <p>A unified command center for homeowners and landlords. Digital leases, automated rent collection, tenant screening, and instant maintenance dispatch.</p>
+          <div class="pillar-tags">
+            <span>Digital Leases</span>
+            <span>Rent Ledger</span>
+            <span>Maintenance Dispatch</span>
+          </div>
+          <a href="/management" class="pillar-link">Explore Management OS <?= icon('arrow-right', 14) ?></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. ARCHITECTURAL MONOGRAPH TIMELINE -->
+<section class="section section-alt" id="journey">
+  <div class="container-x">
+    <div style="text-align:center;max-width:44rem;margin:0 auto 1rem;">
+      <span class="pill pill-gold" style="color:var(--navy-900);font-weight:700;"><?= icon('trending', 14) ?> OUR JOURNEY</span>
+      <h2 style="font-size:clamp(1.75rem,2.5vw,2.5rem);font-weight:800;color:var(--navy-900);margin:0.75rem 0 0.5rem;line-height:1.2;">From The First Blueprint to India's Home Ecosystem</h2>
+      <p style="font-size:1rem;color:var(--navy-600);line-height:1.6;margin:0;">Follow how we mapped, engineered, and scaled India's all-in-one home platform step by step.</p>
+    </div>
+
+    <div class="arch-timeline-wrap">
+      <div class="arch-timeline-spine"></div>
+
+      <?php foreach ($timeline as $t): ?>
+        <div class="arch-timeline-step reveal">
+          <div class="arch-step-node">
+            <div class="arch-step-marker"><?= e($t['phase']) ?></div>
+            <span class="arch-step-year"><?= e($t['year']) ?></span>
+          </div>
+          <div class="arch-step-card">
+            <span class="arch-step-badge"><?= e($t['badge']) ?></span>
+            <h3><?= e($t['title']) ?></h3>
+            <p class="arch-step-subtitle"><?= e($t['subtitle']) ?></p>
+            <p class="arch-step-desc"><?= e($t['desc']) ?></p>
+
+            <ul class="arch-step-highlights">
+              <?php foreach ($t['highlights'] as $h): ?>
+                <li>
+                  <span class="arch-step-check">✓</span>
+                  <span><?= e($h) ?></span>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+
+            <div class="arch-step-chips">
+              <?php foreach ($t['chips'] as $cIdx => $chip): ?>
+                <span class="arch-step-chip <?= $cIdx === 0 ? 'highlight' : '' ?>"><?= e($chip) ?></span>
+              <?php endforeach; ?>
+            </div>
           </div>
         </div>
       <?php endforeach; ?>
@@ -158,10 +379,10 @@ header_partial('about');
   </div>
 </section>
 
-<!-- WHO WE SERVE / USER ROLES SECTION -->
+<!-- 6. WHO WE SERVE / USER ROLES SECTION -->
 <section class="section" id="roles" style="scroll-margin-top: 5rem;">
   <div class="container-x">
-    <?= section_heading('Who We Serve', 'One platform, five journeys', 'Whether you\'re buying, selling, renting, owning, or offering services — Homeosphere is built around how you live and work.') ?>
+    <?= section_heading('Who We Serve', 'One Platform, Five Connected Journeys', 'Whether you\'re buying, selling, renting, owning, or offering services — Homeosphere is built around how you live and work.') ?>
     
     <div class="grid grid-2 mt-12" style="gap: 1.5rem;">
       <?php foreach ($roles as $idx => $r): 
@@ -172,7 +393,7 @@ header_partial('about');
             <span class="about-card-icon" style="display:grid;place-items:center;width:3.5rem;height:3.5rem;border-radius:1rem;flex-shrink:0;background:var(--gold-500);color:var(--navy-900);"><?= icon($r['icon'], 28) ?></span>
             <div>
               <h3 style="font-size:1.25rem;margin:0;color:var(--navy-900);"><?= e($r['role']) ?></h3>
-              <p style="font-size:.875rem;color:var(--navy-500);margin:0">Journey &amp; tools</p>
+              <p style="font-size:.875rem;color:var(--navy-500);margin:0">Connected Journey &amp; Tools</p>
             </div>
           </div>
           <ul style="list-style:none;padding:0;margin:1.5rem 0 0;flex:1;">
@@ -187,13 +408,14 @@ header_partial('about');
       <?php endforeach; ?>
     </div>
 
+    <!-- One Account, Every Role Banner -->
     <div class="card card-pad mt-10 about-account-card reveal" style="background:#fff;border:1px solid var(--sand-200);border-radius:1.5rem;">
       <div style="text-align:center;max-width:36rem;margin:0 auto 1.5rem;">
         <h3 style="font-size:1.25rem;color:var(--navy-900);margin:0 0 0.5rem;font-weight:800;">One Account, Every Role</h3>
-        <p style="font-size:.9rem;color:var(--navy-500);margin:0;">Switch between buying, managing, and hiring — without ever leaving Homeosphere.</p>
+        <p style="font-size:.9rem;color:var(--navy-500);margin:0;">Switch between searching, managing properties, and booking services — without ever leaving Homeosphere.</p>
       </div>
       <div class="grid grid-3" style="gap:1rem;">
-        <?php foreach (['Single sign-on across ecosystem','Shared dashboard & alerts','Unified wallet & payments'] as $b): ?>
+        <?php foreach (['Single sign-on across ecosystem','Shared dashboard & alerts','Unified wallet & payment history'] as $b): ?>
           <div class="about-sub-card" style="border-radius:1rem;background:var(--sand-100);padding:1.25rem;text-align:center;display:flex;align-items:center;justify-content:center;">
             <p style="font-size:.875rem;font-weight:700;color:var(--navy-900);margin:0"><?= e($b) ?></p>
           </div>
@@ -203,132 +425,37 @@ header_partial('about');
   </div>
 </section>
 
-<section class="section journey-section" id="journey">
+<!-- 7. EDITORIAL VALUES & MANIFESTO -->
+<section class="section section-alt" id="manifesto">
   <div class="container-x">
-    <div class="journey-header">
-      <span class="pill pill-gold" style="color:var(--navy-900);font-weight:700;"><?= icon('trending', 14) ?> OUR JOURNEY</span>
-      <h2 class="mt-3">From The First Blueprint to India's Home Ecosystem</h2>
-      <p class="lead mt-3" style="max-width:44rem;margin-left:auto;margin-right:auto;color:var(--navy-600);">Follow our journey as we mapped, engineered, and scaled India's all-in-one home platform.</p>
-    </div>
+    <?= section_heading('Our Foundation', 'Principles That Guide Every Screen and Decision', 'We operate with unwavering commitments to truth, safety, and resident peace of mind.') ?>
 
-    <div class="expedition-canvas mt-10">
-      <!-- Top Track: Route & Waypoints -->
-      <div class="expedition-track-container">
-        <div class="expedition-track-line">
-          <div class="expedition-track-fill" id="expeditionTrackFill"></div>
+    <div class="about-manifesto-grid mt-12">
+      <!-- Left: Manifesto Statement Card -->
+      <div class="about-manifesto-card reveal">
+        <div>
+          <span class="manifesto-tag">THE HOMEOSPHERE MANIFESTO</span>
+          <p class="manifesto-quote">
+            "A home is where family dreams take root, life's biggest savings are invested, and daily peace of mind resides. <strong>No one should ever have to gamble with fake listings, rogue broker spam, or unverified handymen.</strong> We built Homeosphere to restore dignity and trust to living."
+          </p>
         </div>
-        <div class="expedition-waypoints" role="tablist">
-          <?php foreach ($timeline as $idx => $item): ?>
-            <button type="button" 
-                    class="expedition-node <?= $idx === 0 ? 'active' : '' ?>" 
-                    data-index="<?= $idx ?>"
-                    role="tab"
-                    aria-selected="<?= $idx === 0 ? 'true' : 'false' ?>">
-              <span class="node-marker">
-                <span class="node-ring"></span>
-                <span class="node-dot">0<?= $idx + 1 ?></span>
-              </span>
-              <span class="node-meta">
-                <span class="node-year"><?= e($item['year']) ?></span>
-                <span class="node-moniker"><?= e($item['moniker']) ?></span>
-              </span>
-            </button>
-          <?php endforeach; ?>
+        <div class="manifesto-author">
+          <strong>The Homeosphere Engineering &amp; Operations Team</strong>
+          <span>Gurugram HQ • Delhi NCR, India</span>
         </div>
       </div>
 
-      <!-- Controls bar: Phase counter & Navigation buttons -->
-      <div class="expedition-controls-bar">
-        <div class="expedition-phase-counter">
-          <span class="phase-indicator" id="phaseIndicator">PHASE 01 / 04</span>
-          <span class="phase-elevation" id="phaseElevation">MILESTONE: <?= e($timeline[0]['stage_desc']) ?></span>
-        </div>
-        <div class="expedition-nav-btns">
-          <button type="button" class="expedition-btn" id="journeyPrevBtn" aria-label="Previous Phase" title="Previous Phase">
-            <?= icon('arrow-left', 16) ?>
-          </button>
-          <button type="button" class="expedition-btn" id="journeyNextBtn" aria-label="Next Phase" title="Next Phase">
-            <?= icon('arrow-right', 16) ?>
-          </button>
-        </div>
-      </div>
-
-      <!-- Featured Stage: Active Milestone Showcase Pane -->
-      <div class="expedition-stage" id="expeditionStage">
-        <?php foreach ($timeline as $idx => $item): ?>
-          <div class="expedition-slide <?= $idx === 0 ? 'active' : '' ?>" data-index="<?= $idx ?>">
-            <div class="expedition-grid">
-              
-              <!-- Story Pane (Left) -->
-              <div class="expedition-story">
-                <div class="expedition-badge-row">
-                  <span class="pill-gold-outline"><?= e($item['badge']) ?></span>
-                  <span class="expedition-year-tag"><?= e($item['year']) ?></span>
-                </div>
-                <h3 class="expedition-title"><?= e($item['title']) ?></h3>
-                <p class="expedition-subtitle"><?= e($item['subtitle']) ?></p>
-                <p class="expedition-desc"><?= e($item['desc']) ?></p>
-                
-                <div class="expedition-highlights">
-                  <p class="highlights-title">KEY MILESTONES & BREAKTHROUGHS</p>
-                  <ul class="highlights-list">
-                    <?php foreach ($item['highlights'] as $h): ?>
-                      <li>
-                        <span class="check-icon">✓</span>
-                        <span><?= e($h) ?></span>
-                      </li>
-                    <?php endforeach; ?>
-                  </ul>
-                </div>
-              </div>
-
-              <!-- Visual Vignette Pane (Right) -->
-              <div class="expedition-visual">
-                <div class="expedition-visual-box">
-                  <div class="visual-bg-grid"></div>
-                  <div class="visual-header">
-                    <span class="visual-tag"><?= e($item['tag']) ?></span>
-                    <span class="visual-coord"><?= e($item['coord']) ?></span>
-                  </div>
-                  <div class="visual-body">
-                    <div class="visual-icon-shield">
-                      <?= icon($item['icon'], 32) ?>
-                    </div>
-                    <div class="visual-stats-row">
-                      <div class="visual-stat-item">
-                        <span class="visual-stat-num"><?= e($item['stats_value']) ?></span>
-                        <span class="visual-stat-label"><?= e($item['stats_label']) ?></span>
-                      </div>
-                      <div class="visual-stat-item">
-                        <span class="visual-stat-num"><?= e($item['year']) ?></span>
-                        <span class="visual-stat-label">Milestone Year</span>
-                      </div>
-                    </div>
-                    <div class="visual-chips-cloud">
-                      <?php foreach ($item['chips'] as $cIdx => $chip): ?>
-                        <span class="visual-chip <?= $cIdx === 0 ? 'active' : '' ?>"><?= e($chip) ?></span>
-                      <?php endforeach; ?>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
+      <!-- Right: Values Grid -->
+      <div class="grid grid-2" style="gap:1.25rem;">
+        <?php foreach ($values as $v): ?>
+          <div class="card card-hover card-pad about-value-card reveal" style="display:flex;flex-direction:column;align-items:flex-start;gap:0.75rem;">
+            <div class="about-card-icon" style="display:grid;place-items:center;width:3rem;height:3rem;border-radius:1rem;background:var(--navy-50);color:var(--navy-800);flex-shrink:0;">
+              <?= icon($v['icon'], 24) ?>
             </div>
-          </div>
-        <?php endforeach; ?>
-      </div>
-
-      <!-- Bottom Panoramic Deck: All 4 milestones clickable -->
-      <div class="expedition-deck mt-8">
-        <?php foreach ($timeline as $idx => $item): ?>
-          <div class="deck-card <?= $idx === 0 ? 'active' : '' ?>" data-index="<?= $idx ?>">
-            <div class="deck-head">
-              <span class="deck-num">0<?= $idx + 1 ?></span>
-              <span class="deck-year"><?= e($item['year']) ?></span>
+            <div>
+              <h3 style="font-size:1.1rem;margin:0;font-weight:800;color:var(--navy-900);"><?= e($v['title']) ?></h3>
+              <p style="font-size:.875rem;color:var(--navy-600);margin-top:.45rem;line-height:1.55;"><?= e($v['desc']) ?></p>
             </div>
-            <h4 class="deck-title"><?= e($item['stage']) ?></h4>
-            <p class="deck-elevation"><?= e($item['stage_desc']) ?></p>
-            <div class="deck-progress-bar"><div class="deck-progress-fill"></div></div>
           </div>
         <?php endforeach; ?>
       </div>
@@ -336,102 +463,38 @@ header_partial('about');
   </div>
 </section>
 
-<script>
-(function initExpedition() {
-  var nodes = Array.from(document.querySelectorAll('.expedition-node'));
-  var slides = Array.from(document.querySelectorAll('.expedition-slide'));
-  var deckCards = Array.from(document.querySelectorAll('.deck-card'));
-  var fill = document.getElementById('expeditionTrackFill');
-  var phaseIndicator = document.getElementById('phaseIndicator');
-  var phaseElevation = document.getElementById('phaseElevation');
-  var prevBtn = document.getElementById('journeyPrevBtn');
-  var nextBtn = document.getElementById('journeyNextBtn');
+<!-- 8. COMMUNITY VOICES / REAL TESTIMONIALS -->
+<section class="section" id="community">
+  <div class="container-x">
+    <?= section_heading('Community Voices', 'Trusted by Buyers, Owners, Tenants & Pros', 'Real stories from residents and trade professionals who make Homeosphere their everyday home partner.') ?>
 
-  if (!nodes.length || !slides.length) return;
+    <div class="about-testimonials-grid mt-12">
+      <?php foreach ($allTestimonials as $t): ?>
+        <div class="about-testimonial-card reveal">
+          <p class="about-testimonial-text">“<?= e($t['text']) ?>”</p>
+          <div class="testimonial-author-row">
+            <img src="<?= e($t['avatar']) ?>" alt="<?= e($t['name']) ?>" class="testimonial-avatar" loading="lazy">
+            <div class="testimonial-meta">
+              <strong><?= e($t['name']) ?></strong>
+              <span><?= e($t['role']) ?></span>
+              <div class="testimonial-stars">★★★★★</div>
+            </div>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
 
-  var total = nodes.length;
-  var currentIndex = 0;
-
-  var milestones = [
-    'MILESTONE: Core Foundation & Architecture',
-    'MILESTONE: 12-City Marketplace Launch',
-    'MILESTONE: 10 Trade Verticals & Owner OS',
-    'MILESTONE: Nationwide Scale (50+ Cities)'
-  ];
-
-  function setPhase(idx) {
-    if (idx < 0) idx = total - 1;
-    if (idx >= total) idx = 0;
-    currentIndex = idx;
-
-    // 1. Update fill line width
-    var percentage = total > 1 ? (currentIndex / (total - 1)) * 100 : 0;
-    if (fill) fill.style.width = percentage + '%';
-
-    // 2. Update waypoints
-    nodes.forEach(function(n, i) {
-      n.classList.toggle('active', i === currentIndex);
-      n.setAttribute('aria-selected', i === currentIndex ? 'true' : 'false');
-    });
-
-    // 3. Update slides
-    slides.forEach(function(s, i) {
-      s.classList.toggle('active', i === currentIndex);
-    });
-
-    // 4. Update deck cards
-    deckCards.forEach(function(c, i) {
-      c.classList.toggle('active', i === currentIndex);
-    });
-
-    // 5. Update text indicators
-    if (phaseIndicator) {
-      phaseIndicator.textContent = 'PHASE 0' + (currentIndex + 1) + ' / 0' + total;
-    }
-    if (phaseElevation) {
-      phaseElevation.textContent = milestones[currentIndex] || '';
-    }
-  }
-
-  // Node clicks
-  nodes.forEach(function(n) {
-    n.addEventListener('click', function() {
-      var idx = parseInt(n.dataset.index, 10);
-      setPhase(idx);
-    });
-  });
-
-  // Deck clicks
-  deckCards.forEach(function(c) {
-    c.addEventListener('click', function() {
-      var idx = parseInt(c.dataset.index, 10);
-      setPhase(idx);
-    });
-  });
-
-  // Nav buttons
-  if (prevBtn) prevBtn.addEventListener('click', function() { setPhase(currentIndex - 1); });
-  if (nextBtn) nextBtn.addEventListener('click', function() { setPhase(currentIndex + 1); });
-
-  // Keyboard navigation
-  document.addEventListener('keydown', function(e) {
-    var journeyEl = document.getElementById('journey');
-    if (!journeyEl) return;
-    var rect = journeyEl.getBoundingClientRect();
-    if (rect.top < window.innerHeight && rect.bottom > 0) {
-      if (e.key === 'ArrowRight') setPhase(currentIndex + 1);
-      if (e.key === 'ArrowLeft') setPhase(currentIndex - 1);
-    }
-  });
-
-  // Initialize
-  setPhase(0);
-})();
-</script>
-
+<!-- 9. CTA BAND -->
 <section class="section">
   <div class="container-x">
-    <?= cta_band('Join us in building India\'s home ecosystem', 'Whether you\'re a homeowner, a professional, or a future partner — we\'d love to hear from you.', ['label'=>'Get in Touch','href'=>'/contact'], ['label'=>'Explore the Platform','href'=>'/']) ?>
+    <?= cta_band(
+      'Join us in building India\'s home ecosystem',
+      'Whether you\'re a homeowner, a tenant searching for a flat, or a verified professional — we\'d love to welcome you.',
+      ['label' => 'Get in Touch', 'href' => '/contact'],
+      ['label' => 'Explore Properties', 'href' => '/properties']
+    ) ?>
   </div>
 </section>
 
